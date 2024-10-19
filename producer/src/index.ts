@@ -1,9 +1,15 @@
-import { Hono } from 'hono'
+import { Hono } from "hono";
+import { init } from "./start-services";
+import postRoute from "./services/create-post";
 
-const app = new Hono()
+const app = new Hono();
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
+init();
 
-export default app
+app.get("/", (c) => {
+  return c.text("Hello Hono!");
+});
+
+app.route("/", postRoute);
+
+export default app;
